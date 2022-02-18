@@ -66,19 +66,19 @@ class AuthController extends Controller
         );
     }
 
-    // public function logout(): JsonResponse {
-    //     $token = request()->bearerToken();
+    public function logout(): JsonResponse {
+        $token = request()->bearerToken();
 
-    //     /** @var PersonalAccessToken $model */
-    //     $model = Sanctum::$personalAccessTokenModel;
+        /** @var PersonalAccessToken $model */
+        $model = Sanctum::$personalAccessTokenModel;
 
-    //     $accessToken = $model::findToken($token);
-    //     $accessToken->delete();
+        $accessToken = $model::findToken($token);
+        $accessToken->delete();
 
-    //     return $this->success(
-    //         __("Hasta la próxima!"),
-    //         null,
-    //         204,
-    //     );
-    // }
+        return $this->success(
+            __("Hasta la próxima!"),
+            null,
+            204,
+        );
+    }
 }
