@@ -1,21 +1,62 @@
-import { StatusBar } from 'expo-status-bar';
-// import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { Text, View } from 'react-native';
+import { useFonts, Lato_100Thin, Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato';
+import AppLoading from 'expo-app-loading';
+import { Asset } from 'expo-asset';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import Constants from 'expo-constants';
+import { useState } from 'react';
+require("./src/theme");
 
-export default function App() {
+export default function App({appName}) {
+  let [fontsLoaded] = useFonts({
+    Lato_100Thin, Lato_400Regular, Lato_700Bold,
+  });
+
+  const [isReady, setIsReady] = useState(false);
+  if (!isReady || !fontsLoaded) {
+    return (
+      <AppLoading 
+        startAsync={_cacheResourcesAsync}
+        onFinish={() => setIsReady(true)} 
+        onError={console.warn}
+        />
+    )
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Hola desde el celular !!!!!</Text>
-      <StatusBar style="auto" />
+      <Text style={styles.text}>{appName}</Text>
     </View>
   );
 }
 
-const styles = StyleSheet.create({
+App.defaultProps = {
+  appName: Constants.manifest.name,
+};
+
+const _cacheResourcesAsync = () => {
+  const images = [
+    require('./assets/app_icon.png'),
+  ];
+
+  const cacheImages = images.map(image => {
+    return Asset.fromModule(image).downloadAsync();
+  });
+
+  return Promise.all(cacheImages);
+}
+
+const styles = EStyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '$primary',
   },
+  text: {
+    fontSize: '$font32',
+    color: '$white',
+    fontFamily: '$400Regular',
+  }
 });
