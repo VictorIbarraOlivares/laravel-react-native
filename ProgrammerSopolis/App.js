@@ -13,20 +13,20 @@ export default function App({ appName }) {
   });
 
   const [isReady, setIsReady] = useState(false);
-  
+
   if (!isReady || !fontsLoaded) {
     return (
-      <AppLoading 
+      <AppLoading
         startAsync={_cacheResourcesAsync}
-        onFinish={() => setIsReady(true)} 
+        onFinish={() => setIsReady(true)}
         onError={console.warn}
-        />
+      />
     )
   }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{ appName }</Text>
+      <Text style={styles.text}>{appName}</Text>
     </View>
   );
 }
