@@ -55,7 +55,7 @@ const styles = EStyleSheet.create({
     backgroundColor: '$primary',
   },
   text: {
-    fontSize: '$font32',
+    fontSize: '$font28',
     color: '$white',
     fontFamily: '$400Regular',
   }

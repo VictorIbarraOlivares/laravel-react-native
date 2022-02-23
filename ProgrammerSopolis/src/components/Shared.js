@@ -9,17 +9,17 @@ export const ErrorText = ({ error }) => {
 
 export const ActivityLoader = () => {
   return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", position: "absolute"}}>
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <ActivityIndicator color="#f29866" size="large" />
     </View>
   );
 }
 
 const styles = EStyleSheet.create({
-    errorText: {
-      marginBottom: 8,
-      color: "$red",
-      fontFamily: "$400Regular",
-      fontSize: "$font14",
-    }
+  errorText: {
+    marginBottom: 8,
+    color: "$red",
+    fontFamily: "$400Regular",
+    fontSize: "$font14",
+  }
 });
