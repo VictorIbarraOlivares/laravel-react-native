@@ -1,19 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View } from 'react-native';
 import { useFonts, Lato_100Thin, Lato_400Regular, Lato_700Bold } from '@expo-google-fonts/lato';
 import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Constants from 'expo-constants';
-import { useState } from 'react';
 require("./src/theme");
 
-export default function App({appName}) {
+export default function App({ appName }) {
   let [fontsLoaded] = useFonts({
     Lato_100Thin, Lato_400Regular, Lato_700Bold,
   });
 
   const [isReady, setIsReady] = useState(false);
+  
   if (!isReady || !fontsLoaded) {
     return (
       <AppLoading 
@@ -26,7 +26,7 @@ export default function App({appName}) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>{appName}</Text>
+      <Text style={styles.text}>{ appName }</Text>
     </View>
   );
 }
