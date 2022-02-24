@@ -5,6 +5,7 @@ import AppLoading from 'expo-app-loading';
 import { Asset } from 'expo-asset';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Constants from 'expo-constants';
+import AppNavigation from './src/navigations/AppNavigation';
 require("./src/theme");
 
 export default function App({ appName }) {
@@ -24,10 +25,13 @@ export default function App({ appName }) {
     )
   }
 
+  // return (
+  //   <View style={styles.container}>
+  //     <Text style={styles.text}>{appName}</Text>
+  //   </View>
+  // );
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>{appName}</Text>
-    </View>
+    <AppNavigation />
   );
 }
 
