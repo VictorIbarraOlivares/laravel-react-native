@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { View } from "react-native";
-import EStyleSheet from 'react-native-extended-stylesheet';
 import { Text, Button, Image } from "react-native-elements";
+import styles from "../../styles/auth";
 import Toast from "react-native-root-toast";
 import { ErrorText, ActivityLoader } from "../../components/Shared";
 import { useForm } from "react-hook-form";
@@ -70,40 +70,3 @@ const Login = ({ navigation }) => {
 }
 
 export default Login;
-
-const styles = EStyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '$authBg',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginBottom: 0,
-  },
-  title: {
-    fontFamily: '$700Bold',
-    color: '$primary',
-    fontWeight: '$fontWeight900',
-  },
-  buttonTitle: {
-    fontFamily: '$400Regular',
-    color: '$primary',
-    fontSize: 22,
-  },
-  button: {
-    borderColor: 'transparent',
-  },
-  input: {
-    fontFamily: '$400Regular',
-    color: '$black',
-  },
-  link: {
-    fontFamily: "$400Regular",
-    fontSize: '$font12',
-    color: '$black',
-    textDecorationLine: "underline",
-  },
-  errorValidation: {
-    color: "$red",
-    fontSize: "$font12"
-  }
-});
