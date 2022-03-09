@@ -59,7 +59,15 @@ const AuthProvider = () => {
         </AuthContext.Provider>
     );
 }
-
+/**
+ * Object {
+ *  "handleLogin": [Function handleLogin],
+ *  "handleLogout": [Function handleLogout],
+ *  "state": Object {
+ *      "user": null,
+ *      "userTolen": null,
+ *  }.
+ * }
+ */
 const useAuth = () => useContext(AuthContext);
-
 export { useAuth, AuthProvider };

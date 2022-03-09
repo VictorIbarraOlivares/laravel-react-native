@@ -7,6 +7,8 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import Constants from 'expo-constants';
 import AppNavigation from './src/navigations/AppNavigation';
 require("./src/theme");
+import { RootSiblingParent } from 'react-native-root-siblings';
+import { AuthProvider } from './src/providers/AuthProvider';
 
 export default function App({ appName }) {
   let [fontsLoaded] = useFonts({
@@ -25,13 +27,10 @@ export default function App({ appName }) {
     )
   }
 
-  // return (
-  //   <View style={styles.container}>
-  //     <Text style={styles.text}>{appName}</Text>
-  //   </View>
-  // );
   return (
-    <AppNavigation />
+    <RootSiblingParent>
+      <AuthProvider />
+    </RootSiblingParent>
   );
 }
 
