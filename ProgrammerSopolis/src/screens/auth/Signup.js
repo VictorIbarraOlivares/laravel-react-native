@@ -6,6 +6,7 @@ import styles from "../../styles/auth";
 import { ErrorText, ActivityLoader } from "../../components/Shared";
 import { useForm } from "react-hook-form";
 import { EmailInput, PasswordInput, TextInput } from "../../components/inputs";
+import { signup } from "../../services/AuthServices";
 
 const Signup = ({ navigation }) => {
   const [error, setError] = useState(null);
@@ -14,8 +15,17 @@ const Signup = ({ navigation }) => {
   const [secureConfirmationEntry, setSecureConfirmationEntry] = useState(true);
   const { control, handleSubmit, formState: { errors } } = useForm();
 
-  const _signup = async () => {
-    // TODO registrar usuarios
+  const _signup = async (data) => {
+    try {
+      setLoading(true);
+      const message = await signup(data);
+      await navigation.navigate("Login");
+      Toast.show(message);
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
   }
 
   const toggleSecureEntry = () => {

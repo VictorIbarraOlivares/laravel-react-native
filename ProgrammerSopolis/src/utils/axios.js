@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import * as SecureStore from "expo-secure-store";
-import { Constants } from "expo-constants";
+import Constants from "expo-constants";
 import { USER_TOKEN_KEY } from "../providers/AuthProvider";
 
 const axiosInstance = axios.create({
@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 
 axiosInstance.interceptors.request.use(async req => {
     const access_token = await SecureStore.getItemAsync(USER_TOKEN_KEY);
-    req.headers.authorization = `Bearer ${access_token}`;
+    req.headers["Authorization"] = `Bearer ${access_token}`;
     return req;
 })
 
