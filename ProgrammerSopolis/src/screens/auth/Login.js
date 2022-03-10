@@ -6,15 +6,30 @@ import Toast from "react-native-root-toast";
 import { ErrorText, ActivityLoader } from "../../components/Shared";
 import { useForm } from "react-hook-form";
 import { EmailInput, PasswordInput } from "../../components/inputs";
+import { useAuth } from "../../providers/AuthProvider";
+import { login } from "../../services/AuthServices";
 
 const Login = ({ navigation }) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [secureEntry, setSecureEntry] = useState(true);
   const { control, handleSubmit, formState: { errors } } = useForm();
+  const { handleLogin } = useAuth();
 
   const _login = async (data) => {
-    // TODO iniciar sesion
+    try {
+      setLoading(true);
+      const response = await login(data);
+      await handleLogin(response.data);
+      Toast.show(response.message, 
+        {
+          position: Toast.positions.CENTER
+        }
+      );
+    } catch (error) {
+      setError(error.message);
+      setLoading(false);
+    }
   }
 
   const toggleSecureEntry = () => {
